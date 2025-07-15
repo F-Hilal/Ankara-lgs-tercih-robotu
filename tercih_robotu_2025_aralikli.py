@@ -12,6 +12,12 @@ df = pd.read_csv("veri_2025_tahminli_aralikli.csv")
 ilceler = sorted(df["İLÇE"].dropna().unique())
 secili_ilceler = st.multiselect("📍 İlçeleri Seçin", options=ilceler, default=ilceler)
 
+# Okul türleri
+turler = sorted(df["OKUL TÜRÜ"].dropna().unique())
+secili_turler = st.multiselect("🏫 Okul Türünü Seçin", options=turler, default=turler)
+
+df_filtreli = df_filtreli[df_filtreli["OKUL TÜRÜ"].isin(secili_turler)]
+
 # Filtreleme
 df_filtreli = df[df["İLÇE"].isin(secili_ilceler)]
 
